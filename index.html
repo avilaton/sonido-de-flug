@@ -1,0 +1,242 @@
+<!DOCTYPE html> <!--git nr 2-->
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>Sound Of Colleagues</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!--
+	<link rel="icon" type="image/png" sizes="174x174" href="./favicon.png">
+	-->
+
+	<script src="assets/js/jquery.min.js"></script>
+	<link rel='stylesheet' href='assets/css/app1.2.min.css' type='text/css' media='all' />
+
+	<script>
+		$(document).on('click', function(e){
+			if (!everythingready) {
+				console.log('vänta...');
+				return false;
+			}
+			if ($('.overlay:visible').length>0) {
+				$targetoverlay = $('.overlay:visible');
+				$targetoverlay.hide();
+				
+				$('.playmute').removeClass('white');
+
+				if ($(e.target).hasClass('playmute')) {
+					// Aah you clicked the play button already!
+					return;
+				}
+				if ($targetoverlay.attr('id')=='intro') {
+					$('body').removeClass('intro');
+					playz();
+				}
+			}
+			if ($(e.target).attr('id')=='aboutbutton') {
+				$('#about').show();
+				return false;
+			}
+		});
+		$('#aboutbutton').on('click', function(){
+			$('#about').show();
+		});
+	</script>
+	<style>
+		#loading {
+			color: #fff;
+			font-family: 'familjen_groteskbold';
+		}
+		audio {
+			display: none;
+		}
+		</style>
+
+	<meta property="og:title" content="Are you too missing the office?">
+	<meta property="og:site_name" content="Sound Of Colleagues">
+	<meta property="og:url" content="https://soundofcolleagues.com/">
+	<meta property="og:description" content="Are you too missing the office? Keyboard clattering, office dogs and printer errors.">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="https://soundofcolleagues.com/assets/img/soundofcolleagues_1200x630.jpg">
+
+</head>
+
+<body class="intro">
+	<div id="page-wrapper">
+		
+		<div id="intro" class="overlay" style="z-index:9999; display: block; position: absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.8);">
+
+			<div class="overlay-inner">
+				<div class="overlay-content">
+					
+					<h2>Hi there colleague!</h2>
+					<p>We missed the sound of our colleagues so much that we created this website as a substitute.</p>
+					<p>Start listening by unmuting<br>the sound up here!</p>
+					
+				</div>
+			</div>
+			<div class="overlay-arrow"></div>
+		</div>
+
+		<div id="about" class="overlay" style="z-index:9999; display: none; position: absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.8);">
+
+			<div class="overlay-inner">
+				<div class="overlay-content">
+					
+					<h2>About sound of colleagues!</h2>
+					<p>Sound of Colleagues is the result of a creative collaboration between the advertising agency Familjen STHLM and audio branding agency Red Pipe Studios. It was created as a reaction to this spring’s strict work from home policies in Sweden. Enjoy!<br><br></p>
+					<h3>Advertising agency</h3>
+					<p>
+						Familjen STHLM<br>
+						info@familjen.se<br>
+						+46 70 317 91 07<br>
+						<a href="https://www.familjen.se">familjen.se</a><br>
+						<br>
+					</p>
+					
+					
+					<h3>Audio branding agency</h3>
+					<p>
+						Red Pipe Studios<br>
+						info@redpipe.se<br>
+						+46 8 459 03 90<br>
+						<a href="https://www.redpipe.se">redpipe.com</a><br>
+					</p>
+					
+					<p>Thanks for visiting!</p>
+					
+				</div>
+			</div>
+			<div class="overlay-close"></div>
+		</div>
+
+		<div class="header">
+			<div class="nav-right">
+				<ul>
+					
+					<li><a href="#" id="aboutbutton">About the project</a></li>
+					<li><a href="https://open.spotify.com/album/6libmSiLbdQ4GsSeLe8xZz" class="spotify"><span class="sr-only">Spotify</span></a></li>
+					
+					<li><a href="#" id="playbutton" style="display: none;" onclick="playz();" class="playmute mute white"><span class="sr-only">Play/mute</span></a></li>
+					<li id="loading">
+
+						<div id="loading">
+							Loading ...
+						</div>
+			
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="image">
+			<h1>
+				<img src="assets/img/soc_logo_final.png" alt="The Sound of Colleagues">
+			</h1>
+			<div class="colleagueimage">
+				<img class="" src="assets/img/soc_gubbe_final.png" alt="Colleague chilling at home presumably">
+			</div>
+		</div>
+
+		<div class="audio">
+
+			<div class="audio-player audio-player-0">
+				<span class="title">Room tone</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.5" oninput="audio1.changeVolume(this);">
+					</div>
+				</div>
+			</div>
+
+			<div class="audio-player audio-player-1">
+				<span class="title">Coffee machine</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.5" oninput="audio2.changeVolume(this);">
+					</div>
+				</div>
+			</div>
+
+			<div class="audio-player audio-player-2">
+				<span class="title">People</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.5" oninput="audio3.changeVolume(this);"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="audio-player audio-player-3">
+				<span class="title">Printer</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.3" oninput="audio4.changeVolume(this);"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="audio-player audio-player-4">
+				<span class="title">Open window</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.4" oninput="audio5.changeVolume(this);">
+					</div>
+				</div>
+			</div>
+
+			<div class="audio-player audio-player-5">
+				<span class="title">Telephone</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.5" oninput="audio6.changeVolume(this);">
+					</div>
+				</div>
+			</div>
+
+			<div class="audio-player audio-player-6">
+				<span class="title">The office dog</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.1" oninput="audio7.changeVolume(this);">
+					</div>
+				</div>
+			</div>
+
+			<div class="audio-player audio-player-7">
+				<span class="title">Keyboards</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.5" oninput="audio8.changeVolume(this);">
+					</div>
+				</div>
+			</div>
+
+			<div class="audio-player audio-player-8">
+				<span class="title">Rain on window</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.2" oninput="audio9.changeVolume(this);">
+					</div>
+				</div>
+			</div>
+
+			<div class="audio-player audio-player-8">
+				<span class="title">Risa Fernanda</span>
+				<div class="audio__controls">
+					<div class="audio__controls__item audio__volume">
+						<input type="range" step="0.05" min="0" max="1" value="0.2" oninput="audio10.changeVolume(this);">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+
+
+
+<script src="assets/js/app/bufferloader.js"></script>
+<script src="assets/js/app/main.js"></script>
+</body>
+</html>
