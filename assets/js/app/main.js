@@ -18,6 +18,7 @@ function init() {
         "./audio/loop/KEYBOARD.mp3",
         "./audio/loop/RAIN_ON_WINDOW.mp3",
         "./audio/loop/FERNANDA.ogg",
+        "./audio/loop/MEATORECONPAN.ogg",
       ],
       finishedLoading
     )).load();
@@ -42,6 +43,7 @@ function playz() {
     audio8.toggle(),
     audio9.toggle();
     audio10.toggle();
+    audio11.toggle();
 }
 var audio1 = {
     playing: !1,
@@ -312,6 +314,35 @@ var audio1 = {
         (this.gainNode = context.createGain());
       var t = context.createBufferSource();
       (t.buffer = bufferList[9]),
+        t.connect(this.gainNode),
+        this.gainNode.connect(context.destination),
+        (this.gainNode.gain.value = 0.2),
+        (t.loop = !0),
+        t.start || (t.start = t.noteOn),
+        t.start(0),
+        (this.source = t);
+    },
+    changeVolume: function (t) {
+      var e = t.value;
+      parseInt(t.value), parseInt(t.max);
+      this.gainNode.gain.value = e;
+    },
+    stop: function () {
+      this.source.stop || (this.source.stop = source.noteOff),
+        this.source.stop(0);
+    },
+    toggle: function () {
+      this.playing ? this.stop() : this.play(), (this.playing = !this.playing);
+    },
+  },
+  audio11 = {
+    playing: !1,
+    gainNode: null,
+    play: function () {
+      context.createGain || (context.createGain = context.createGainNode),
+        (this.gainNode = context.createGain());
+      var t = context.createBufferSource();
+      (t.buffer = bufferList[10]),
         t.connect(this.gainNode),
         this.gainNode.connect(context.destination),
         (this.gainNode.gain.value = 0.2),
